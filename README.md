@@ -1,2 +1,2 @@
-# del-staff-msg
-Discord Extreme List Staff Messaging Service
+# Discord Extreme List Staff Messaging Service
+:construction: This is currently being created! Please check back soon!! :construction:
