@@ -6,7 +6,7 @@ if start == '1':
     botid = input("\nPlease enter the bot's username for re-reviewal purposes.\nIf you would like to skip this step, don't send anything: ")
     if botid != '':
         bot_id = botid
-        ownerid = input("\nPlease enter the owners's user id for re-reviewal purposes.\nIf you would like to skip this step, don't send anything: ")
+        ownerid = input("\nPlease enter the owner's user id for re-reviewal purposes.\nIf you would like to skip this step, don't send anything: ")
     else:
         bot_id = 'Unknown'
     if botid != '':
