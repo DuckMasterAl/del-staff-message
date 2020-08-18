@@ -12,4 +12,4 @@ This system just let's you list errors with a bot, and copies the message for yo
 4. Run [del_msg.py](https://github.com/DuckMasterAl/del-staff-message/blob/master/del_msg.py) and use the DEL Staff Messaging Service!
 
 ### Disclaimers
-We are not affiliated with Discord Extreme List. "Discord Extreme List", "discordextremelist.xyz" (case-insensitive) are trademarks of Cairo Mitchell-Acason.
+"Discord Extreme List", "discordextremelist.xyz" (case-insensitive) are trademarks of Cairo Mitchell-Acason.
