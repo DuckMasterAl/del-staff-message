@@ -27,11 +27,7 @@ if start == '1':
     msg =['Hello! While reviewing your bot, I found the following issues:']
     print('Start typing errors below!')
     while a == 0:
-        try:
-            issue = input('\n- ')
-        except Traceback:
-            pyperclip.copy(msg)
-            print('Copied all the Bot\'s Issues to your Clipboard! Next time, you can paste them and get started again!')
+        issue = input('\n- ')
         if issue == '':
             a = 1
         else:
