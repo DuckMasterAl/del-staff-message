@@ -1,5 +1,5 @@
 import pyperclip, json
-datafile = './del_msg_data.json'# You may need to change the path to the data file.
+datafile = '/Users/duckmasteral/Documents/GitHub/del-staff-message/del_msg_data.json'# You may need to change the path to the data file.
 with open(datafile) as json_file:
     data = json.load(json_file)
 botsindata = len(data['bots'])
@@ -45,11 +45,13 @@ if start == '1':
 elif start == '2':
     botlist = ["If the bot is not in this list, don't send anything."]
     ownerlist = ['Placeholder']
+    botidlist = ['Placeholder']
     num = 1
     with open(datafile) as json_file:
         data = json.load(json_file)
     for x in data['bots']:
         bot = x['bot']
+        botidlist.append(bot)
         botlist.append(f"{num}. {bot}")
         ownerlist.append(x['owner'])
         num += 1
@@ -60,6 +62,7 @@ elif start == '2':
         bot_id = None
     else:
         owner_id = ownerlist.pop(int(bot_num))
+        bot_id = botidlist.pop(int(bot_num))
         owner_mention = f'<@{owner_id}>'
     a = 0
     num = 1
@@ -77,6 +80,11 @@ elif start == '2':
     msg.append("Please ping me __one time__ once you've fixed __all__ the issues above, and I will re-review your bot. Thanks!")
     msg1 = '\n'.join(msg)
     pyperclip.copy(msg1)
+    if bot_id is not None:
+        if bot_id in data['review']:
+            data['review'].remove(bot_id)
+            with open(datafile) as json_file:
+                data = json.load(json_file)
     print('The message has been copied to your clipboard!')
 elif start == '3':
     botlist = []
