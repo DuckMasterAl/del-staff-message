@@ -1,7 +1,10 @@
 import pyperclip, json
-datafile = '/Users/duckmasteral/Documents/GitHub/del-staff-message/del_msg_data.json'# You may need to change the path to the data file.
-
-start = input('Welcome to the DEL Staff Messaging System!\n[1] Review a New Bot\n[2] Re-review a bot\n[3] Remove an Approved/Denied Bot\nPlease type the number that corresponds to the action you want to do: ')
+datafile = './del_msg_data.json'# You may need to change the path to the data file.
+with open(datafile) as json_file:
+    data = json.load(json_file)
+botsindata = len(data['bots'])
+botsinreview = len(data['review'])
+start = input(f'Welcome to the DEL Staff Messaging System!\n[1] Review a New Bot\n[2] Re-review a bot\n[3] Remove an Approved/Denied Bot\n[4] Toggle a Bot\'s Reviewal State\nCurrently you have {botsindata} Bots You\'re Reviewing. {botsinreview} of them need a re-reviewal.\nPlease type the number that corresponds to the action you want to do: ')
 if start == '1':
     botid = input("\nPlease enter the bot's username for re-reviewal purposes.\nIf you would like to skip this step, don't send anything: ")
     if botid != '':
@@ -95,8 +98,37 @@ elif start == '3':
     for b in data['bots']:
         if ownerid == b['owner'] and botuser == b['bot']:
             data['bots'].remove(b)
+        if botuser == b['bot'] and b['bot'] in data['review']:
+            data['review'].remove(b['bot'])
     with open(datafile, 'w') as f:
         json.dump(data, f, indent=4)
-    print('Successfully Removed the Bots from the List!')
+    print('Successfully Removed the Bot from the List!')
+elif start == '4':
+    with open(datafile) as json_file:
+        data = json.load(json_file)
+    num = 1
+    botlist = []
+    reviewlist = []
+    realbot = ['Placeholder']
+    for x in data['bots']:
+        bot = x['bot']
+        realbot.append(bot)
+        if bot in data['review']:
+            reviewlist.append(f'{num}. {bot}')
+        else:
+            botlist.append(f'{num}. {bot}')
+        num += 1
+    reviewlist = '\n'.join(reviewlist)
+    botlist = '\n'.join(botlist)
+    bot_num = input(f'Bot\'s Under Review:\n{reviewlist}\nBot\'s Not Under Review:\n{botlist}\nPlease select the number that corresponds to the bot you want to toggle the reviewal state on: ')
+    bot = realbot.pop(int(bot_num))
+    for x in data['bots']:
+        if bot == x['bot'] and x['bot'] in data['review']:
+            data['review'].remove(x['bot'])
+        elif bot == x['bot']:
+            data['review'].append(bot)
+    with open(datafile, 'w') as f:
+        json.dump(data, f, indent=4)
+    print('Successfully toggled the Bot\'s State of Review!')
 else:
     print('Nope! Try again.')
