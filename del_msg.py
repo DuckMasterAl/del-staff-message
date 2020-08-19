@@ -83,8 +83,8 @@ elif start == '2':
     if bot_id is not None:
         if bot_id in data['review']:
             data['review'].remove(bot_id)
-            with open(datafile) as json_file:
-                data = json.load(json_file)
+            with open(datafile, 'w') as f:
+                json.dump(data, f, indent=4)
     print('The message has been copied to your clipboard!')
 elif start == '3':
     botlist = []
