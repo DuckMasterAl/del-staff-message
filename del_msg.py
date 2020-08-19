@@ -1,5 +1,5 @@
 import pyperclip, json
-datafile = '/Users/duckmasteral/Documents/GitHub/del-staff-message/del_msg_data.json'# You may need to change the path to the data file.
+datafile = './del_msg_data.json'# You may need to change the path to the data file.
 with open(datafile) as json_file:
     data = json.load(json_file)
 botsindata = len(data['bots'])
