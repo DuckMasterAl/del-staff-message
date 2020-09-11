@@ -12,6 +12,7 @@ if start == '1':
         ownerid = input("\nPlease enter the owner's user id for re-reviewal purposes.\nIf you would like to skip this step, don't send anything: ")
     else:
         bot_id = 'Unknown'
+        ownerid = ''
     if botid != '':
         with open(datafile) as json_file:
             data = json.load(json_file)
@@ -25,9 +26,26 @@ if start == '1':
         data['bots'].append(temp)
         with open(datafile, 'w') as f:
             json.dump(data, f, indent=4)
+    else:
+        ownerid = ''
     a = 0
     num = 1
-    msg =['Hello! While reviewing your bot, I found the following issues:']
+    review_type = input("[1] This Bot has had a Ticket for Privacy Policy Issues.\n[2] This Bot has Waited a long time for Reviewal and had an Improper Privacy Policy.\nIf you require a custom starting message, type the number of it now, otherwise send nothing: ")
+    if review_type == '1':
+        if ownerid == '':
+            msg = ["Hello, Thanks for Fixing your Privacy Policy! While reviewing your bot, I found the following issues:"]
+        else:
+            msg = [f"Hello <@{ownerid}>, Thanks for Fixing your Privacy Policy! While reviewing your bot, I found the following issues:"]
+    elif review_type == '2':
+        if ownerid == '':
+            msg = ["Hello, Thanks for fixing your Privacy Policy and for your Patience! While reviewing your bot, I found the following issues:"]
+        else:
+            msg = [f"Hello <@{ownerid}>, Thanks for Fixing your Privacy Policy and for your Patience! While reviewing your bot, I found the following issues:"]
+    else:
+        if ownerid == '':
+            msg = ['Hello! While reviewing your bot, I found the following issues:']
+        else:
+            msg = [f'Hello <@{ownerid}>! While reviewing your bot, I found the following issues:']
     print('Start typing errors below!')
     while a == 0:
         issue = input('\n- ')
