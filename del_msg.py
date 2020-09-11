@@ -42,10 +42,7 @@ if start == '1':
         else:
             msg = [f"Hello <@{ownerid}>, Thanks for Fixing your Privacy Policy and for your Patience! While reviewing your bot, I found the following issues:"]
     else:
-        if ownerid == '':
-            msg = ['Hello! While reviewing your bot, I found the following issues:']
-        else:
-            msg = [f'Hello <@{ownerid}>! While reviewing your bot, I found the following issues:']
+        msg = ['Hello! While reviewing your bot, I found the following issues:']
     print('Start typing errors below!')
     while a == 0:
         issue = input('\n- ')
